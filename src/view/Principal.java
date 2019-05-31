@@ -12,6 +12,8 @@ import java.io.FileWriter;
 import javax.swing.JFileChooser;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -24,10 +26,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-/**
- *
- * @author ksjenger
- */
 public class Principal extends javax.swing.JFrame {
 
     Arquivo arq = new Arquivo();
@@ -55,7 +53,11 @@ public class Principal extends javax.swing.JFrame {
         btnSelecionar.setText("Selecionar");
         btnSelecionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSelecionarActionPerformed(evt);
+                try {
+                    btnSelecionarActionPerformed(evt);
+                } catch (SAXException ex) {
+                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
 
@@ -70,52 +72,52 @@ public class Principal extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanelImportarLayout = new javax.swing.GroupLayout(jPanelImportar);
         jPanelImportar.setLayout(jPanelImportarLayout);
         jPanelImportarLayout.setHorizontalGroup(
-            jPanelImportarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelImportarLayout.createSequentialGroup()
-                .addGroup(jPanelImportarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelImportarLayout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(lbnInstrucoes))
-                    .addGroup(jPanelImportarLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(txtUrl, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSelecionar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                jPanelImportarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelImportarLayout.createSequentialGroup()
+                        .addGroup(jPanelImportarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanelImportarLayout.createSequentialGroup()
+                                        .addGap(29, 29, 29)
+                                        .addComponent(lbnInstrucoes))
+                                .addGroup(jPanelImportarLayout.createSequentialGroup()
+                                        .addContainerGap()
+                                        .addComponent(txtUrl, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnSelecionar)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelImportarLayout.setVerticalGroup(
-            jPanelImportarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelImportarLayout.createSequentialGroup()
-                .addGap(7, 7, 7)
-                .addComponent(lbnInstrucoes)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelImportarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSelecionar)
-                    .addComponent(txtUrl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                jPanelImportarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelImportarLayout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addComponent(lbnInstrucoes)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanelImportarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnSelecionar)
+                                .addComponent(txtUrl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(27, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jPanelImportar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jPanelImportar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanelImportar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanelImportar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         setSize(new java.awt.Dimension(580, 132));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarActionPerformed
+    private void btnSelecionarActionPerformed(java.awt.event.ActionEvent evt) throws SAXException {//GEN-FIRST:event_btnSelecionarActionPerformed
         try {
             File arquivos[];
             JFileChooser files = new JFileChooser();
@@ -137,7 +139,10 @@ public class Principal extends javax.swing.JFrame {
             fileExp.setDialogTitle("Selecione o local para salvar o arquivo");
 
             fileExp.setFileSelectionMode(JFileChooser.SAVE_DIALOG);
-            fileExp.setSelectedFile(new File("C:\\Notas.csv"));
+            SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyy");
+            Date datadia = new Date();
+            String dataF = sdf.format(datadia);
+            fileExp.setSelectedFile(new File("C:\\Importação " + dataF + ".csv"));
             int resultado = fileExp.showSaveDialog(this);
             if (resultado == JFileChooser.CANCEL_OPTION) {
                 return;
@@ -145,69 +150,91 @@ public class Principal extends javax.swing.JFrame {
 
             fileExp.getSelectedFile();
 
-            String urlExp = "" + fileExp.getSelectedFile().getPath() + "\\Notas.csv";
+            String urlExp = "" + fileExp.getSelectedFile().getPath() + "\\Importação " + dataF + ".csv";
             FileWriter exp = new FileWriter(urlExp);
             PrintWriter gravExp = new PrintWriter(exp);
             gravExp.printf("Pedido;Nota Fiscal;Chave da Nota %n");
 
+            //ler todos os xml da pasta
             for (int i = 0; i < arquivos.length; i++) {
-                try {
-                    String dir = arquivos[i].toString();
-                    Document doc = builder.parse(dir);
+                String dir = arquivos[i].toString();
+                Document doc = builder.parse(dir);
 
-                    NodeList prod = doc.getElementsByTagName("prod");
+                NodeList dest = doc.getElementsByTagName("dest");
+                Node destino = dest.item(0);
+                NodeList destChild = destino.getChildNodes();
 
-                    Node pedido = prod.item(0);
+                for (int j = 0; j < destChild.getLength(); j++) {
+                    Node xNome = destChild.item(j);
+                    if (xNome.getNodeName().equals("xNome")) {
+                        String destinatario = xNome.getTextContent();
+                        JOptionPane.showMessageDialog(this, destinatario);
+                    }
 
-                    //NodeList pedidoChild = (NodeList) pedido.getLastChild();
-                    NodeList pedidoChild = pedido.getChildNodes();
+                    if (xNome.getNodeName().equals("enderDest")) {
+                        Node enderDest = dest.item(1);
+                        NodeList enderDestChild = destino.getChildNodes();
 
-                    int cont = 0;
-                    for (int j = 0; j < pedidoChild.getLength(); j++) {
-                        Node xPed = pedidoChild.item(j);
-                        if (xPed.getNodeName().equals("xPed")) {
-                            gravExp.printf(xPed.getTextContent() + ";");
-                            cont++;
+                        for (int d = 0; d < destChild.getLength(); d++) {
+                            Node xLgr = dest.item(0);
+                            if (xLgr.getNodeName().equals("xLgr")) {
+                                String endereco = xLgr.getTextContent();
+                                JOptionPane.showMessageDialog(this, endereco);
+                            }
+
                         }
-
-                    }
-                    if (cont == 0) {
-                        gravExp.printf(";");
                     }
 
-                    NodeList nf = doc.getElementsByTagName("nNF");
+                    /*
+                     NodeList prod = doc.getElementsByTagName("prod");
+                     Node pedido = prod.item(0);
+                     NodeList pedidoChild = pedido.getChildNodes();
 
-                    Node noNota = nf.item(0);
-                    Element elementoNf = (Element) noNota;
+                     int cont = 0;
+                     for (int j = 0; j < pedidoChild.getLength(); j++) {
+                     Node xPed = pedidoChild.item(j);
+                     if (xPed.getNodeName().equals("xPed")) {
+                     gravExp.printf(xPed.getTextContent() + ";");
+                     cont++;
+                     }
 
-                    gravExp.printf(elementoNf.getTextContent() + ";");
+                     }
+                     if (cont == 0) {
+                     gravExp.printf(";");
+                     }
 
-                    NodeList ch = doc.getElementsByTagName("chNFe");
+                     NodeList nf = doc.getElementsByTagName("nNF");
 
-                    Node noChave = ch.item(0);
-                    Element elementoCh = (Element) noChave;
+                     Node noNota = nf.item(0);
+                     Element elementoNf = (Element) noNota;
 
-                    gravExp.print("'" + elementoCh.getTextContent() + "'");
+                     gravExp.printf(elementoNf.getTextContent() + ";");
 
-                } catch (SAXException ex) {
-                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IOException ex) {
-                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                     NodeList ch = doc.getElementsByTagName("chNFe");
+
+                     Node noChave = ch.item(0);
+                     Element elementoCh = (Element) noChave;
+
+                     gravExp.print("'" + elementoCh.getTextContent() + "'");
+                     */
+                    gravExp.printf("%n");
                 }
 
-                gravExp.printf("%n");
-            }//fim do for
+            }// fim do grande for
+
             gravExp.close();
             Process pro;
             pro = Runtime.getRuntime().exec("cmd.exe /c  " + urlExp);
             pro.waitFor();
             System.exit(WIDTH);
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (SAXException e) {
+            e.printStackTrace();
         }
 
     }//GEN-LAST:event_btnSelecionarActionPerformed
@@ -216,15 +243,8 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUrlActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
